@@ -11,7 +11,7 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "venkatasanthoshk@gmail.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "technoaikvs@gmail.com";
 
 async function sendContactEmail(data: {
   name: string;
