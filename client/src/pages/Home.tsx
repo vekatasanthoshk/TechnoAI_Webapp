@@ -75,26 +75,26 @@ export default function Home() {
     }
   };
 
-  const inputCls = "w-full px-4 py-2.5 bg-[#0d1b3e] border border-[rgba(41,98,255,0.3)] rounded-lg focus:outline-none focus:border-[#2962FF] focus:ring-1 focus:ring-[#2962FF] text-white placeholder:text-[#7a90c8] text-sm transition-colors";
+  const inputCls = "w-full px-4 py-2.5 bg-[#f0f4ff] border border-[rgba(41,98,255,0.25)] rounded-lg focus:outline-none focus:border-[#2962FF] focus:ring-1 focus:ring-[#2962FF] text-[#0d1b3e] placeholder:text-[#8a9abf] text-sm transition-colors";
 
   return (
-    <div className="min-h-screen bg-[#0d1b3e] text-white">
+    <div className="min-h-screen bg-white text-[#0d1b3e]">
 
       {/* ── NAV ── */}
-      <nav className="fixed top-0 w-full bg-[#0a1530]/95 backdrop-blur-md border-b border-[rgba(41,98,255,0.2)] z-50">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-[rgba(41,98,255,0.12)] shadow-sm z-50">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <TechnoAILogo size={40} />
             <div className="hidden sm:block">
-              <span className="font-bold text-lg text-white">TechnoAI</span>
-              <p className="text-[10px] text-[#7a90c8] leading-none">KVS TechnoAI LLC</p>
+              <span className="font-bold text-lg text-[#0d1b3e]">TechnoAI</span>
+              <p className="text-[10px] text-[#5a6a9a] leading-none">KVS TechnoAI LLC</p>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-7 text-sm text-[#a0b4e8]">
+          <div className="hidden md:flex items-center gap-7 text-sm text-[#3a4a7a]">
             {navItems.map((item) => (
               <button key={item.label} onClick={() => scrollToSection(item.href)}
-                className="hover:text-white transition-colors">
+                className="hover:text-[#2962FF] transition-colors">
                 {item.label}
               </button>
             ))}
@@ -102,7 +102,7 @@ export default function Home() {
 
           <div className="hidden md:flex gap-3">
             <Button variant="outline" size="sm"
-              className="border-[rgba(41,98,255,0.4)] text-[#a0b4e8] hover:border-[#2962FF] hover:text-white bg-transparent"
+              className="border-[rgba(41,98,255,0.35)] text-[#3a4a7a] hover:border-[#2962FF] hover:text-[#2962FF] bg-transparent"
               onClick={() => scrollToSection("#contact")}>
               Contact
             </Button>
@@ -113,17 +113,17 @@ export default function Home() {
             </Button>
           </div>
 
-          <button className="md:hidden p-2 text-[#a0b4e8]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button className="md:hidden p-2 text-[#3a4a7a]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#0a1530] border-b border-[rgba(41,98,255,0.2)]">
+          <div className="md:hidden bg-white border-b border-[rgba(41,98,255,0.12)] shadow-sm">
             <div className="container py-4 flex flex-col gap-4">
               {navItems.map((item) => (
                 <button key={item.label} onClick={() => scrollToSection(item.href)}
-                  className="text-left text-sm text-[#a0b4e8] hover:text-white transition-colors">
+                  className="text-left text-sm text-[#3a4a7a] hover:text-[#2962FF] transition-colors">
                   {item.label}
                 </button>
               ))}
@@ -147,7 +147,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(41,98,255,0.4)] bg-[rgba(41,98,255,0.1)] text-xs text-[#a0b4e8] mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(41,98,255,0.4)] bg-[rgba(41,98,255,0.08)] text-xs text-[#2962FF] mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00C8B3] animate-pulse" />
                 Business Automation & AI Solutions
               </div>
@@ -155,7 +155,7 @@ export default function Home() {
                 Transforming Businesses{" "}
                 <span className="brand-gradient-text">with AI</span>
               </h1>
-              <p className="text-lg text-[#a0b4e8] mb-8 leading-relaxed">
+              <p className="text-lg text-[#4a5a8a] mb-8 leading-relaxed">
                 Automate workflows, improve decision-making, and reduce operational costs with custom AI solutions built for your business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -165,7 +165,7 @@ export default function Home() {
                   Book Consultation <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
                 <Button size="lg" variant="outline"
-                  className="border-[rgba(41,98,255,0.4)] text-[#a0b4e8] hover:border-[#2962FF] hover:text-white bg-transparent"
+                  className="border-[rgba(41,98,255,0.35)] text-[#3a4a7a] hover:border-[#2962FF] hover:text-[#2962FF] bg-transparent"
                   onClick={() => scrollToSection("#services")}>
                   Explore Services
                 </Button>
@@ -176,7 +176,7 @@ export default function Home() {
                 {metrics.map((m, i) => (
                   <div key={i}>
                     <div className={`text-2xl font-bold ${m.color}`}>{m.value}</div>
-                    <div className="text-xs text-[#7a90c8]">{m.label}</div>
+                    <div className="text-xs text-[#5a6a9a]">{m.label}</div>
                   </div>
                 ))}
               </div>
@@ -187,8 +187,8 @@ export default function Home() {
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#2962FF]/10 to-[#00C8B3]/5 border border-[rgba(41,98,255,0.2)]" />
               <div className="relative z-10 text-center">
                 <TechnoAILogo size={140} className="mx-auto mb-4 drop-shadow-2xl" />
-                <p className="text-[#a0b4e8] text-sm font-medium">KVS TechnoAI LLC</p>
-                <p className="text-[#7a90c8] text-xs">Business Automation & AI Solutions</p>
+                <p className="text-[#3a4a7a] text-sm font-medium">KVS TechnoAI LLC</p>
+                <p className="text-[#5a6a9a] text-xs">Business Automation & AI Solutions</p>
               </div>
               <div className="absolute top-8 right-8 w-20 h-20 rounded-full bg-[#2962FF]/20 blur-xl" />
               <div className="absolute bottom-8 left-8 w-16 h-16 rounded-full bg-[#00C8B3]/20 blur-xl" />
@@ -199,12 +199,12 @@ export default function Home() {
 
 
       {/* ── SERVICES ── */}
-      <section id="services" className="py-20 bg-[#0a1530]">
+      <section id="services" className="py-20 bg-[#f8faff]">
         <div className="container">
           <div className="text-center mb-14">
             <p className="text-[#2962FF] text-sm font-semibold uppercase tracking-widest mb-3">What We Do</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Services</h2>
-            <p className="text-[#7a90c8] max-w-2xl mx-auto">
+            <p className="text-[#4a5a8a] max-w-2xl mx-auto">
               Comprehensive AI solutions designed to drive growth and efficiency across your entire organization.
             </p>
           </div>
@@ -212,12 +212,12 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((service, idx) => (
               <div key={idx}
-                className="card-hover bg-[#112050] border border-[rgba(41,98,255,0.2)] rounded-xl p-8">
+                className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5`}>
                   <div className="text-white">{service.icon}</div>
                 </div>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-[#7a90c8] mb-6 text-sm leading-relaxed">{service.description}</p>
+                <p className="text-[#4a5a8a] mb-6 text-sm leading-relaxed">{service.description}</p>
                 <button onClick={() => setContactFormOpen(true)}
                   className="flex items-center gap-1 text-sm text-[#2962FF] hover:text-[#00C8B3] transition-colors font-medium">
                   Learn More <ArrowRight className="w-4 h-4" />
@@ -255,18 +255,18 @@ export default function Home() {
 
 
       {/* ── PORTFOLIO ── */}
-      <section id="portfolio" className="py-20 bg-[#0a1530]">
+      <section id="portfolio" className="py-20 bg-[#f8faff]">
         <div className="container">
           <div className="text-center mb-14">
             <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">Case Studies</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
-            <p className="text-[#7a90c8] max-w-2xl mx-auto">
+            <p className="text-[#4a5a8a] max-w-2xl mx-auto">
               See how we've helped businesses transform with AI-powered solutions.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="card-hover bg-[#112050] border border-[rgba(41,98,255,0.2)] rounded-xl p-8">
+            <div className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
               <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(0,200,179,0.1)] border border-[rgba(0,200,179,0.3)] text-[#00C8B3] text-xs font-medium mb-6">
                 SaaS Company
               </div>
@@ -279,13 +279,13 @@ export default function Home() {
                 ].map((item) => (
                   <div key={item.label}>
                     <h4 className="text-[#2962FF] font-semibold text-sm mb-1">{item.label}</h4>
-                    <p className="text-[#7a90c8] text-sm leading-relaxed">{item.text}</p>
+                    <p className="text-[#4a5a8a] text-sm leading-relaxed">{item.text}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="card-hover bg-[#112050] border border-[rgba(41,98,255,0.2)] rounded-xl p-8">
+            <div className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
               <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(41,98,255,0.1)] border border-[rgba(41,98,255,0.3)] text-[#2962FF] text-xs font-medium mb-6">
                 Key Metrics
               </div>
@@ -298,7 +298,7 @@ export default function Home() {
                 ].map((item) => (
                   <div key={item.label}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[#a0b4e8] text-sm">{item.label}</span>
+                      <span className="text-[#3a4a7a] text-sm">{item.label}</span>
                       <span className={`text-2xl font-bold ${item.color}`}>{item.value}</span>
                     </div>
                     <div className="h-px bg-[rgba(41,98,255,0.15)]" />
@@ -312,16 +312,16 @@ export default function Home() {
 
 
       {/* ── ABOUT ── */}
-      <section id="about" className="py-20 bg-[#0d1b3e]">
+      <section id="about" className="py-20 bg-white">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-[#2962FF] text-sm font-semibold uppercase tracking-widest mb-3">Who We Are</p>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">About TechnoAI</h2>
-              <p className="text-[#7a90c8] mb-4 leading-relaxed">
+              <p className="text-[#4a5a8a] mb-4 leading-relaxed">
                 We are a team of AI specialists, engineers, and business strategists dedicated to transforming enterprises through intelligent automation and data-driven solutions.
               </p>
-              <p className="text-[#7a90c8] mb-8 leading-relaxed">
+              <p className="text-[#4a5a8a] mb-8 leading-relaxed">
                 With deep expertise in machine learning, natural language processing, and enterprise software, we deliver solutions that create measurable impact on your bottom line.
               </p>
               <div className="space-y-5">
@@ -336,7 +336,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">{item.title}</h4>
-                      <p className="text-sm text-[#7a90c8]">{item.desc}</p>
+                      <p className="text-sm text-[#4a5a8a]">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -347,7 +347,7 @@ export default function Home() {
               <div className="bg-gradient-to-br from-[rgba(41,98,255,0.1)] to-[rgba(0,200,179,0.05)] border border-[rgba(41,98,255,0.2)] rounded-2xl p-10 flex flex-col items-center justify-center min-h-80 text-center">
                 <TechnoAILogo size={112} className="mx-auto mb-5" />
                 <p className="font-bold text-lg">KVS TechnoAI LLC</p>
-                <p className="text-[#7a90c8] text-sm mt-1">Business Automation & AI Solutions</p>
+                <p className="text-[#5a6a9a] text-sm mt-1">Business Automation & AI Solutions</p>
                 <div className="flex gap-3 mt-6">
                   <span className="px-3 py-1 rounded-full bg-[rgba(41,98,255,0.15)] text-[#2962FF] text-xs border border-[rgba(41,98,255,0.3)]">AI Automation</span>
                   <span className="px-3 py-1 rounded-full bg-[rgba(0,200,179,0.15)] text-[#00C8B3] text-xs border border-[rgba(0,200,179,0.3)]">ML & NLP</span>
@@ -361,18 +361,18 @@ export default function Home() {
 
 
       {/* ── AI eCOMMERCE ── */}
-      <section id="ecommerce" className="py-20 bg-[#0a1530]">
+      <section id="ecommerce" className="py-20 bg-[#f8faff]">
         <div className="container">
           <div className="text-center mb-14">
             <p className="text-[#00CB53] text-sm font-semibold uppercase tracking-widest mb-3">eCommerce AI</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">AI eCommerce Solutions</h2>
-            <p className="text-[#7a90c8] max-w-2xl mx-auto">
+            <p className="text-[#4a5a8a] max-w-2xl mx-auto">
               Omnichannel platform capabilities for custom growth, ROI, and business scalability.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="card-hover bg-[#112050] border border-[rgba(41,98,255,0.2)] rounded-xl p-8">
+            <div className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
               <h3 className="text-xl font-bold mb-6">Growth & Automation Features</h3>
               <ul className="space-y-4">
                 {[
@@ -384,13 +384,13 @@ export default function Home() {
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-[#00C8B3] flex-shrink-0" />
-                    <span className="text-[#a0b4e8] text-sm">{item}</span>
+                    <span className="text-[#3a4a7a] text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="card-hover bg-[#112050] border border-[rgba(41,98,255,0.2)] rounded-xl p-8">
+            <div className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
               <h3 className="text-xl font-bold mb-6">Success Metrics</h3>
               <div className="space-y-6">
                 {[
@@ -400,7 +400,7 @@ export default function Home() {
                 ].map((item) => (
                   <div key={item.label}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[#a0b4e8] text-sm">{item.label}</span>
+                      <span className="text-[#3a4a7a] text-sm">{item.label}</span>
                       <span className={`text-xl font-bold ${item.color}`}>{item.value}</span>
                     </div>
                     <div className="h-1.5 bg-[rgba(41,98,255,0.15)] rounded-full overflow-hidden">
@@ -416,38 +416,38 @@ export default function Home() {
 
 
       {/* ── CONTACT ── */}
-      <section id="contact" className="py-20 bg-[#0d1b3e]">
+      <section id="contact" className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-12">
             <p className="text-[#2962FF] text-sm font-semibold uppercase tracking-widest mb-3">Get In Touch</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Business?</h2>
-            <p className="text-[#7a90c8] max-w-2xl mx-auto">
+            <p className="text-[#4a5a8a] max-w-2xl mx-auto">
               Contact us today for a free consultation and discover how AI can drive your growth.
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className="bg-[#112050] border border-[rgba(41,98,255,0.2)] rounded-2xl p-8">
+            <div className="bg-white border border-[rgba(41,98,255,0.15)] rounded-2xl p-8 shadow-md">
               <form onSubmit={handleFormSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-[#a0b4e8] mb-2">Name *</label>
+                    <label className="block text-sm font-medium text-[#3a4a7a] mb-2">Name *</label>
                     <input type="text" name="name" value={formData.name} onChange={handleFormChange}
                       required className={inputCls} placeholder="Your name" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#a0b4e8] mb-2">Email *</label>
+                    <label className="block text-sm font-medium text-[#3a4a7a] mb-2">Email *</label>
                     <input type="email" name="email" value={formData.email} onChange={handleFormChange}
                       required className={inputCls} placeholder="you@company.com" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#a0b4e8] mb-2">Company *</label>
+                  <label className="block text-sm font-medium text-[#3a4a7a] mb-2">Company *</label>
                   <input type="text" name="company" value={formData.company} onChange={handleFormChange}
                     required className={inputCls} placeholder="Your company name" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#a0b4e8] mb-2">Message *</label>
+                  <label className="block text-sm font-medium text-[#3a4a7a] mb-2">Message *</label>
                   <textarea name="message" value={formData.message} onChange={handleFormChange}
                     required rows={5} className={`${inputCls} resize-none`}
                     placeholder="Tell us about your project and goals..." />
@@ -465,44 +465,44 @@ export default function Home() {
 
 
       {/* ── FOOTER ── */}
-      <footer className="bg-[#0a1530] border-t border-[rgba(41,98,255,0.2)] py-12">
+      <footer className="bg-[#f0f4ff] border-t border-[rgba(41,98,255,0.15)] py-12">
         <div className="container">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-4">
                 <TechnoAILogo size={40} />
                 <div>
-                  <p className="font-bold text-white">TechnoAI</p>
-                  <p className="text-[10px] text-[#7a90c8]">KVS TechnoAI LLC</p>
+                  <p className="font-bold text-[#0d1b3e]">TechnoAI</p>
+                  <p className="text-[10px] text-[#5a6a9a]">KVS TechnoAI LLC</p>
                 </div>
               </div>
-              <p className="text-sm text-[#7a90c8]">Business Automation & AI Solutions</p>
+              <p className="text-sm text-[#4a5a8a]">Business Automation & AI Solutions</p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-white mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-[#7a90c8]">
+              <h4 className="font-semibold text-sm text-[#0d1b3e] mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-[#4a5a8a]">
                 {["Business Automation", "AI Agents", "Data Systems"].map((s) => (
                   <li key={s}><button onClick={() => scrollToSection("#services")} className="hover:text-[#2962FF] transition-colors">{s}</button></li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-white mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-[#7a90c8]">
+              <h4 className="font-semibold text-sm text-[#0d1b3e] mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-[#4a5a8a]">
                 <li><button onClick={() => scrollToSection("#about")} className="hover:text-[#2962FF] transition-colors">About</button></li>
                 <li><button onClick={() => scrollToSection("#portfolio")} className="hover:text-[#2962FF] transition-colors">Portfolio</button></li>
                 <li><button onClick={() => scrollToSection("#contact")} className="hover:text-[#2962FF] transition-colors">Contact</button></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-white mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-[#7a90c8]">
+              <h4 className="font-semibold text-sm text-[#0d1b3e] mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm text-[#4a5a8a]">
                 <li><a href="#" className="hover:text-[#2962FF] transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-[#2962FF] transition-colors">Terms of Service</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-[rgba(41,98,255,0.15)] pt-8 text-center text-sm text-[#7a90c8]">
+          <div className="border-t border-[rgba(41,98,255,0.15)] pt-8 text-center text-sm text-[#4a5a8a]">
             <p>&copy; 2025 KVS TechnoAI LLC. All rights reserved.</p>
           </div>
         </div>
@@ -512,33 +512,33 @@ export default function Home() {
       {/* ── CONTACT MODAL ── */}
       {contactFormOpen && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#112050] border border-[rgba(41,98,255,0.3)] rounded-2xl max-w-md w-full p-7 relative shadow-2xl">
+          <div className="bg-white border border-[rgba(41,98,255,0.2)] rounded-2xl max-w-md w-full p-7 relative shadow-2xl">
             <button onClick={() => setContactFormOpen(false)}
-              className="absolute top-4 right-4 text-[#7a90c8] hover:text-white transition-colors">
+              className="absolute top-4 right-4 text-[#5a6a9a] hover:text-[#0d1b3e] transition-colors">
               <X className="w-5 h-5" />
             </button>
             <div className="mb-6">
               <h3 className="text-2xl font-bold">Book a Consultation</h3>
-              <p className="text-[#7a90c8] text-sm mt-1">We'll get back to you within 24 hours.</p>
+              <p className="text-[#5a6a9a] text-sm mt-1">We'll get back to you within 24 hours.</p>
             </div>
             <form onSubmit={handleFormSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#a0b4e8] mb-1.5">Name *</label>
+                <label className="block text-sm font-medium text-[#3a4a7a] mb-1.5">Name *</label>
                 <input type="text" name="name" value={formData.name} onChange={handleFormChange}
                   required className={inputCls} placeholder="Your name" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#a0b4e8] mb-1.5">Email *</label>
+                <label className="block text-sm font-medium text-[#3a4a7a] mb-1.5">Email *</label>
                 <input type="email" name="email" value={formData.email} onChange={handleFormChange}
                   required className={inputCls} placeholder="you@company.com" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#a0b4e8] mb-1.5">Company *</label>
+                <label className="block text-sm font-medium text-[#3a4a7a] mb-1.5">Company *</label>
                 <input type="text" name="company" value={formData.company} onChange={handleFormChange}
                   required className={inputCls} placeholder="Your company" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#a0b4e8] mb-1.5">Message *</label>
+                <label className="block text-sm font-medium text-[#3a4a7a] mb-1.5">Message *</label>
                 <textarea name="message" value={formData.message} onChange={handleFormChange}
                   required rows={4} className={`${inputCls} resize-none`}
                   placeholder="Tell us about your project..." />

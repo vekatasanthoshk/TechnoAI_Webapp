@@ -98,8 +98,8 @@ export default function ChatBot() {
       {isOpen && (
         <div className="fixed bottom-24 right-5 w-[360px] max-w-[calc(100vw-1.5rem)] z-50 shadow-2xl">
           {/* Window */}
-          <div className="flex flex-col rounded-2xl overflow-hidden border border-[rgba(41,98,255,0.3)]"
-            style={{ height: "440px", background: "#0d1b3e" }}>
+          <div className="flex flex-col rounded-2xl overflow-hidden border border-[rgba(41,98,255,0.2)] shadow-xl"
+            style={{ height: "440px", background: "#ffffff" }}>
 
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 brand-gradient">
@@ -122,7 +122,7 @@ export default function ChatBot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-[#f8faff]">
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                   {msg.sender === "bot" && (
@@ -157,14 +157,14 @@ export default function ChatBot() {
 
             {/* Input */}
             <form onSubmit={handleSend}
-              className="flex gap-2 px-4 py-3 border-t border-[rgba(41,98,255,0.2)] bg-[#0a1530]">
+              className="flex gap-2 px-4 py-3 border-t border-[rgba(41,98,255,0.12)] bg-white">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask about our services..."
                 disabled={isTyping}
-                className="flex-1 px-3 py-2 bg-[#112050] border border-[rgba(41,98,255,0.3)] rounded-xl text-sm text-white placeholder:text-[#7a90c8] focus:outline-none focus:border-[#2962FF] transition-colors"
+                className="flex-1 px-3 py-2 bg-[#112050] border border-[rgba(41,98,255,0.2)] shadow-xl rounded-xl text-sm text-white placeholder:text-[#7a90c8] focus:outline-none focus:border-[#2962FF] transition-colors"
               />
               <button type="submit" disabled={isTyping || !inputValue.trim()}
                 className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center text-white disabled:opacity-40 transition-opacity flex-shrink-0">

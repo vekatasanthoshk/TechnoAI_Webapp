@@ -42,41 +42,40 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Brand: KVS TechnoAI — dark navy base, blue/teal/green accents */
+/* Brand: KVS TechnoAI — white/light base, blue/teal/green accents */
 :root {
   --radius: 0.5rem;
-  /* Dark navy theme as default (matches brand) */
-  --background: #0d1b3e;
-  --foreground: #f0f4ff;
-  --card: #112050;
-  --card-foreground: #f0f4ff;
-  --popover: #112050;
-  --popover-foreground: #f0f4ff;
+  --background: #ffffff;
+  --foreground: #0d1b3e;
+  --card: #f8faff;
+  --card-foreground: #0d1b3e;
+  --popover: #ffffff;
+  --popover-foreground: #0d1b3e;
   --primary: #2962FF;
   --primary-foreground: #ffffff;
-  --secondary: #1a2d6b;
-  --secondary-foreground: #a0b4e8;
-  --muted: #1a2d6b;
-  --muted-foreground: #7a90c8;
+  --secondary: #eef2ff;
+  --secondary-foreground: #1a2d6b;
+  --muted: #f0f4ff;
+  --muted-foreground: #5a6a9a;
   --accent: #00C8B3;
-  --accent-foreground: #0d1b3e;
+  --accent-foreground: #ffffff;
   --destructive: #ff4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(41, 98, 255, 0.2);
-  --input: #1a2d6b;
+  --border: rgba(41, 98, 255, 0.15);
+  --input: #f0f4ff;
   --ring: #2962FF;
   --chart-1: #2962FF;
   --chart-2: #00C8B3;
   --chart-3: #00CB53;
   --chart-4: #0080FF;
   --chart-5: #1A237B;
-  --sidebar: #0a1530;
-  --sidebar-foreground: #f0f4ff;
+  --sidebar: #f8faff;
+  --sidebar-foreground: #0d1b3e;
   --sidebar-primary: #2962FF;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #00C8B3;
-  --sidebar-accent-foreground: #0d1b3e;
-  --sidebar-border: rgba(41, 98, 255, 0.2);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(41, 98, 255, 0.15);
   --sidebar-ring: #2962FF;
 }
 
@@ -179,18 +178,18 @@
 
   /* Polygon/network background pattern matching brand */
   .hero-bg {
-    background-color: #0d1b3e;
+    background-color: #ffffff;
     background-image:
-      radial-gradient(circle at 15% 50%, rgba(41, 98, 255, 0.15) 0%, transparent 45%),
-      radial-gradient(circle at 85% 20%, rgba(0, 200, 179, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 60% 80%, rgba(0, 203, 83, 0.08) 0%, transparent 35%);
+      radial-gradient(circle at 15% 50%, rgba(41, 98, 255, 0.07) 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(0, 200, 179, 0.07) 0%, transparent 40%),
+      radial-gradient(circle at 60% 80%, rgba(0, 203, 83, 0.05) 0%, transparent 35%);
   }
 
   /* Subtle grid lines */
   .grid-bg {
     background-image:
-      linear-gradient(rgba(41, 98, 255, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(41, 98, 255, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(41, 98, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(41, 98, 255, 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
