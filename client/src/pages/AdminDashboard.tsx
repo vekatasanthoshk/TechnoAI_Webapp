@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { getLoginUrl } from "@/const";
 
 export default function AdminDashboard() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [selectedSubmission, setSelectedSubmission] = useState<number | null>(null);
 
   const { data: submissions, isLoading, refetch } = trpc.contact.list.useQuery(undefined, {
@@ -26,6 +26,16 @@ export default function AdminDashboard() {
       toast.error("Failed to delete submission");
     },
   });
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <p className="text-muted-foreground animate-pulse">Verifying credentials...</p>
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   if (!user) {
     return (

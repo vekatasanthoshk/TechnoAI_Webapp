@@ -7,11 +7,8 @@ import { z } from "zod";
 import { createContactSubmission, getAllContactSubmissions, deleteContactSubmission } from "./db";
 import { Resend } from "resend";
 
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
-  : null;
-
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "technoaikvs@gmail.com";
+const RESEND_KEY = process.env.RESEND_API_KEY || "re_WBF9mTx2_GzjudSz69qXwVkiWDTnVcvfh";
+const resend = RESEND_KEY ? new Resend(RESEND_KEY) : null;
 
 async function sendContactEmail(data: {
   name: string;
@@ -23,9 +20,16 @@ async function sendContactEmail(data: {
     console.warn("[email] RESEND_API_KEY not set — skipping email");
     return;
   }
+
+  const contactEmail = process.env.CONTACT_EMAIL || "technoaikvs@gmail.com";
+  if (!contactEmail) {
+    console.warn("[email] CONTACT_EMAIL not set — unable to send notification email.");
+    return;
+  }
+
   await resend.emails.send({
     from: "TechnoAI Contact <onboarding@resend.dev>",
-    to: CONTACT_EMAIL,
+    to: contactEmail,
     replyTo: data.email,
     subject: `New Contact Form Submission from ${data.name} — ${data.company}`,
     html: `
