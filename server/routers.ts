@@ -7,7 +7,7 @@ import { z } from "zod";
 import { createContactSubmission, getAllContactSubmissions, deleteContactSubmission } from "./db";
 import { Resend } from "resend";
 
-const RESEND_KEY = process.env.RESEND_API_KEY || "re_WBF9mTx2_GzjudSz69qXwVkiWDTnVcvfh";
+const RESEND_KEY = process.env.RESEND_API_KEY || "re_dtdnQ9y4_7swHAxqpD18q7rEbZrLriEbm";
 const resend = RESEND_KEY ? new Resend(RESEND_KEY) : null;
 
 async function sendContactEmail(data: {
