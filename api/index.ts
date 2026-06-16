@@ -38,4 +38,7 @@ try {
   app.use((req, res) => res.status(500).json({ error: "Initialization Error", message: err.message }));
 }
 
-export default app;
+// Vercel serverless function wrapper to avoid ESM/CJS export issues
+export default function handler(req: any, res: any) {
+  return app(req, res);
+}
