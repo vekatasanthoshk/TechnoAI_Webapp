@@ -8,6 +8,9 @@ import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import ChatBot from "@/components/ChatBot";
 import TechnoAILogo from "@/components/TechnoAILogo";
+import { motion } from "framer-motion";
+import ThreeDHero from "@/components/ThreeDHero";
+import VeoFlow from "@/components/VeoFlow";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -124,50 +127,57 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section id="home" className="pt-32 pb-24 relative overflow-hidden hero-bg grid-bg">
-        <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-[#2962FF]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 left-10 w-56 h-56 rounded-full bg-[#00C8B3]/10 blur-3xl pointer-events-none" />
+      <section id="home" className="pt-32 pb-24 relative overflow-hidden min-h-[90vh] flex items-center">
+        <ThreeDHero />
         <div className="container relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(41,98,255,0.4)] bg-[rgba(41,98,255,0.08)] text-xs text-[#2962FF] mb-6">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl border border-white/50 shadow-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(41,98,255,0.4)] bg-[rgba(41,98,255,0.15)] backdrop-blur-md text-xs font-medium text-[#2962FF] mb-6 shadow-[0_0_15px_rgba(41,98,255,0.2)]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00C8B3] animate-pulse" />
                 Business Automation & AI Solutions
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Transforming Businesses <span className="brand-gradient-text">with AI</span>
               </h1>
-              <p className="text-lg text-[#4a5a8a] mb-8 leading-relaxed">
+              <p className="text-lg text-[#3a4a7a] font-medium mb-8 leading-relaxed">
                 Automate workflows, improve decision-making, and reduce operational costs with custom AI solutions built for your business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="brand-gradient gradient-animate text-white border-0 glow-blue px-8" onClick={() => setContactFormOpen(true)}>
-                  Book Consultation <ArrowRight className="ml-2 w-4 h-4" />
+                <Button size="lg" className="brand-gradient gradient-animate text-white border-0 glow-blue px-8 relative overflow-hidden group" onClick={() => setContactFormOpen(true)}>
+                  <span className="relative z-10 flex items-center">Book Consultation <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" /></span>
                 </Button>
-                <Button size="lg" variant="outline" className="border-[rgba(41,98,255,0.35)] text-[#3a4a7a] hover:border-[#2962FF] hover:text-[#2962FF] bg-transparent" onClick={() => scrollToSection("#services")}>
+                <Button size="lg" variant="outline" className="border-[rgba(41,98,255,0.35)] backdrop-blur-md bg-white/50 text-[#3a4a7a] hover:border-[#2962FF] hover:text-[#2962FF] hover:bg-white/80" onClick={() => scrollToSection("#services")}>
                   Explore Services
                 </Button>
               </div>
               <div className="flex flex-wrap gap-6 mt-10">
                 {metrics.map((m, i) => (
-                  <div key={i}>
-                    <div className={`text-2xl font-bold ${m.color}`}>{m.value}</div>
-                    <div className="text-xs text-[#5a6a9a]">{m.label}</div>
-                  </div>
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                  >
+                    <div className={`text-2xl font-bold ${m.color} drop-shadow-sm`}>{m.value}</div>
+                    <div className="text-xs text-[#5a6a9a] font-medium">{m.label}</div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
             <div className="relative hidden md:flex items-center justify-center h-96">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#2962FF]/10 to-[#00C8B3]/5 border border-[rgba(41,98,255,0.15)]" />
-              <div className="relative z-10 text-center">
-                <TechnoAILogo size={140} className="mx-auto mb-4 drop-shadow-2xl" />
-                <p className="text-[#3a4a7a] text-sm font-medium">KVS TechnoAI LLC</p>
-                <p className="text-[#5a6a9a] text-xs">Business Automation & AI Solutions</p>
-              </div>
+              {/* 3D Model takes up this space visually */}
             </div>
           </div>
         </div>
       </section>
+
+      {/* VEO FLOW INTEGRATION */}
+      <VeoFlow />
 
       {/* SERVICES */}
       <section id="services" className="py-20 bg-[#f8faff]">
@@ -179,16 +189,23 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((service, idx) => (
-              <div key={idx} className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5`}>
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm group hover:shadow-[0_0_30px_rgba(41,98,255,0.1)] transition-all"
+              >
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5 group-hover:scale-110 transition-transform`}>
                   <div className="text-white">{service.icon}</div>
                 </div>
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                 <p className="text-[#4a5a8a] mb-6 text-sm leading-relaxed">{service.description}</p>
                 <button onClick={() => setContactFormOpen(true)} className="flex items-center gap-1 text-sm text-[#2962FF] hover:text-[#00C8B3] transition-colors font-medium">
-                  Learn More <ArrowRight className="w-4 h-4" />
+                  Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -224,7 +241,12 @@ export default function Home() {
             <p className="text-[#4a5a8a] max-w-2xl mx-auto">See how we've helped businesses transform with AI-powered solutions.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm"
+            >
               <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(0,200,179,0.1)] border border-[rgba(0,200,179,0.3)] text-[#00C8B3] text-xs font-medium mb-6">SaaS Company</div>
               <h3 className="text-xl font-bold mb-6">Reducing Manual Support Tickets by 80%</h3>
               <div className="space-y-5">
@@ -239,11 +261,17 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#2962FF]/5 rounded-bl-full pointer-events-none" />
               <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(41,98,255,0.1)] border border-[rgba(41,98,255,0.3)] text-[#2962FF] text-xs font-medium mb-6">Key Metrics</div>
               <h3 className="text-xl font-bold mb-8">Measurable Business Impact</h3>
-              <div className="space-y-5">
+              <div className="space-y-5 relative z-10">
                 {[
                   { label: "Leads Generated", value: "+85%", color: "text-blue-500" },
                   { label: "Cost Reduction", value: "-40%", color: "text-teal-500" },
@@ -251,14 +279,14 @@ export default function Home() {
                 ].map((item) => (
                   <div key={item.label}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[#3a4a7a] text-sm">{item.label}</span>
+                      <span className="text-[#3a4a7a] text-sm font-medium">{item.label}</span>
                       <span className={`text-2xl font-bold ${item.color}`}>{item.value}</span>
                     </div>
-                    <div className="h-px bg-[rgba(41,98,255,0.1)]" />
+                    <div className="h-px bg-gradient-to-r from-[rgba(41,98,255,0.2)] to-transparent" />
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
