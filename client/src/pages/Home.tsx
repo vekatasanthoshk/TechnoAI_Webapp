@@ -91,7 +91,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-[#0d1b3e]">
 
       {/* NAV */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-[rgba(41,98,255,0.12)] shadow-sm z-50">
+      <nav className="fixed top-0 w-full glass-panel-light z-50 border-b border-[rgba(255,255,255,0.8)]">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <TechnoAILogo size={40} />
@@ -134,7 +134,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl border border-white/50 shadow-2xl"
+              className="glass-panel-light p-8 rounded-3xl soft-shadow"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(41,98,255,0.4)] bg-[rgba(41,98,255,0.15)] backdrop-blur-md text-xs font-medium text-[#2962FF] mb-6 shadow-[0_0_15px_rgba(41,98,255,0.2)]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00C8B3] animate-pulse" />
@@ -191,7 +191,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm group hover:shadow-[0_0_30px_rgba(41,98,255,0.1)] transition-all"
+                className="animated-gradient-border-light p-8 soft-shadow group hover:-translate-y-2 transition-all duration-300"
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5 group-hover:scale-110 transition-transform`}>
                   <div className="text-white">{service.icon}</div>
@@ -241,7 +241,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm"
+              className="animated-gradient-border-light p-8 soft-shadow group hover:-translate-y-1 transition-all duration-300"
             >
               <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(0,200,179,0.1)] border border-[rgba(0,200,179,0.3)] text-[#00C8B3] text-xs font-medium mb-6">SaaS Company</div>
               <h3 className="text-xl font-bold mb-6">Reducing Manual Support Tickets by 80%</h3>
@@ -262,7 +262,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="card-hover bg-white border border-[rgba(41,98,255,0.15)] rounded-xl p-8 shadow-sm relative overflow-hidden"
+              className="animated-gradient-border-light p-8 soft-shadow relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2962FF]/5 rounded-bl-full pointer-events-none" />
               <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(41,98,255,0.1)] border border-[rgba(41,98,255,0.3)] text-[#2962FF] text-xs font-medium mb-6">Key Metrics</div>
