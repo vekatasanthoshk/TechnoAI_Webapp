@@ -10,8 +10,36 @@ let _db: ReturnType<typeof drizzle> | null = null;
 export async function getDb() {
   if (!_db && process.env.POSTGRES_URL) {
     try {
-      const client = postgres(process.env.POSTGRES_URL);
-      _db = drizzle(client);
+      const sql = postgres(process.env.POSTGRES_URL);
+      _db = drizzle(sql);
+      
+      // Auto-migrate tables on first connection to ensure they exist on Vercel Postgres
+      sql`
+        CREATE TABLE IF NOT EXISTS "users" (
+          "id" SERIAL PRIMARY KEY,
+          "openId" VARCHAR(64) NOT NULL UNIQUE,
+          "name" TEXT,
+          "email" VARCHAR(320),
+          "loginMethod" VARCHAR(64),
+          "role" VARCHAR NOT NULL DEFAULT 'user',
+          "createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+          "lastSignedIn" TIMESTAMP NOT NULL DEFAULT NOW()
+        )
+      `.execute().catch(e => console.error("[Database] Auto-migrate users error:", e));
+
+      sql`
+        CREATE TABLE IF NOT EXISTS "contact_submissions" (
+          "id" SERIAL PRIMARY KEY,
+          "name" VARCHAR(255) NOT NULL,
+          "email" VARCHAR(320) NOT NULL,
+          "company" VARCHAR(255) NOT NULL,
+          "message" TEXT NOT NULL,
+          "createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NOT NULL DEFAULT NOW()
+        )
+      `.execute().catch(e => console.error("[Database] Auto-migrate contact_submissions error:", e));
+
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
