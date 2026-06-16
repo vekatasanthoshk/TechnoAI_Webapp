@@ -3,14 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import DashboardLayout from "@/components/DashboardLayout";
 import { trpc } from "@/lib/trpc";
-import { Trash2, Mail, Building2, MessageSquare, Calendar } from "lucide-react";
+import { Trash2, Mail, Building2, MessageSquare, Calendar, Lock } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { getLoginUrl } from "@/const";
+import { Input } from "@/components/ui/input";
 
 export default function AdminDashboard() {
   const { user, loading } = useAuth();
   const [selectedSubmission, setSelectedSubmission] = useState<number | null>(null);
+  const [password, setPassword] = useState("");
+
+  const utils = trpc.useUtils();
 
   const { data: submissions, isLoading, refetch } = trpc.contact.list.useQuery(undefined, {
     enabled: !!user && user.role === "admin",
@@ -27,6 +30,16 @@ export default function AdminDashboard() {
     },
   });
 
+  const loginMutation = trpc.auth.loginAdmin.useMutation({
+    onSuccess: () => {
+      toast.success("Logged in successfully");
+      utils.auth.me.invalidate();
+    },
+    onError: (err) => {
+      toast.error(err.message || "Invalid password");
+    }
+  });
+
   if (loading) {
     return (
       <DashboardLayout>
@@ -37,36 +50,42 @@ export default function AdminDashboard() {
     );
   }
 
-  if (!user) {
+  if (!user || user.role !== "admin") {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
         <Card className="bg-card border-border p-8 max-w-md w-full text-center">
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <Lock className="w-8 h-8 text-primary" />
+            </div>
+          </div>
           <h2 className="text-2xl font-bold mb-4">Admin Access Required</h2>
           <p className="text-muted-foreground mb-6">
-            You need to sign in with an admin account to access this dashboard.
+            Please enter the admin password to access this dashboard.
           </p>
-          <Button
-            size="lg"
-            className="w-full bg-primary hover:bg-primary/90"
-            onClick={() => {
-              window.location.href = getLoginUrl();
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              loginMutation.mutate({ password });
             }}
+            className="space-y-4"
           >
-            Sign In
-          </Button>
-        </Card>
-      </div>
-    );
-  }
-
-  if (user.role !== "admin") {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <Card className="bg-card border-border p-8 max-w-md w-full text-center">
-          <h2 className="text-2xl font-bold mb-4">Access Denied</h2>
-          <p className="text-muted-foreground">
-            You do not have permission to access the admin dashboard.
-          </p>
+            <Input 
+              type="password" 
+              placeholder="Enter admin password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full"
+            />
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full bg-primary hover:bg-primary/90"
+              disabled={loginMutation.isPending || !password}
+            >
+              {loginMutation.isPending ? "Authenticating..." : "Unlock Dashboard"}
+            </Button>
+          </form>
         </Card>
       </div>
     );
@@ -75,11 +94,13 @@ export default function AdminDashboard() {
   return (
     <DashboardLayout>
       <div className="flex-1 space-y-8 p-8">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">Contact Submissions</h1>
-          <p className="text-muted-foreground">
-            Manage and review all contact form submissions from your website.
-          </p>
+        <div className="flex justify-between items-end">
+          <div>
+            <h1 className="text-3xl font-bold mb-2">Contact Submissions</h1>
+            <p className="text-muted-foreground">
+              Manage and review all contact form submissions from your website.
+            </p>
+          </div>
         </div>
 
         {isLoading ? (
