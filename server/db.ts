@@ -1,6 +1,6 @@
 import { eq, desc } from "drizzle-orm";
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import postgres from "postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
 import { InsertUser, users, contactSubmissions, InsertContactSubmission } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
@@ -10,7 +10,8 @@ let _db: ReturnType<typeof drizzle> | null = null;
 export async function getDb() {
   if (!_db && process.env.POSTGRES_URL) {
     try {
-      _db = drizzle(sql);
+      const client = postgres(process.env.POSTGRES_URL);
+      _db = drizzle(client);
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
