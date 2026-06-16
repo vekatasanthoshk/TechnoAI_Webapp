@@ -10,7 +10,6 @@ import ChatBot from "@/components/ChatBot";
 import TechnoAILogo from "@/components/TechnoAILogo";
 import { motion } from "framer-motion";
 import ThreeDHero from "@/components/ThreeDHero";
-import VeoFlow from "@/components/VeoFlow";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -175,9 +174,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* VEO FLOW INTEGRATION */}
-      <VeoFlow />
 
       {/* SERVICES */}
       <section id="services" className="py-20 bg-[#f8faff]">
