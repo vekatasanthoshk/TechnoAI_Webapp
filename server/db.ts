@@ -8,9 +8,10 @@ let _db: ReturnType<typeof drizzle> | null = null;
 
 // Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
-  if (!_db && process.env.POSTGRES_URL) {
+  const connectionString = process.env.STORAGE_POSTGRES_URL || process.env.POSTGRES_URL;
+  if (!_db && connectionString) {
     try {
-      const sql = postgres(process.env.POSTGRES_URL);
+      const sql = postgres(connectionString);
       _db = drizzle(sql);
       
       // Auto-migrate tables on first connection to ensure they exist on Vercel Postgres

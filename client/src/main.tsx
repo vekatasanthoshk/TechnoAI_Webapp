@@ -7,6 +7,7 @@ import superjson from "superjson";
 import App from "./App";
 import { getLoginUrl } from "./const";
 import "./index.css";
+import "hover.css/css/hover-min.css";
 
 const queryClient = new QueryClient();
 
