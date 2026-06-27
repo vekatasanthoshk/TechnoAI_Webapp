@@ -10,6 +10,8 @@ import ChatBot from "@/components/ChatBot";
 import TechnoAILogo from "@/components/TechnoAILogo";
 import { motion } from "framer-motion";
 import ThreeDHero from "@/components/ThreeDHero";
+import { useEffect, useRef } from "react";
+import Parallax from "parallax-js";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -39,6 +41,14 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactFormOpen, setContactFormOpen] = useState(false);
   const contactMutation = trpc.contact.submit.useMutation();
+
+  const sceneRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (sceneRef.current) {
+      const parallaxInstance = new Parallax(sceneRef.current, { relativeInput: true });
+      return () => parallaxInstance.destroy();
+    }
+  }, []);
 
   const sectionForm = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -126,9 +136,11 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section id="home" className="pt-32 pb-24 relative overflow-hidden min-h-[90vh] flex items-center">
-        <ThreeDHero />
-        <div className="container relative z-10">
+      <section id="home" className="pt-32 pb-24 relative overflow-hidden min-h-[90vh] flex items-center" ref={sceneRef}>
+        <div data-depth="0.2" className="absolute inset-0 w-full h-full pointer-events-none">
+          <ThreeDHero />
+        </div>
+        <div data-depth="0.05" className="container relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -147,10 +159,10 @@ export default function Home() {
                 Automate workflows, improve decision-making, and reduce operational costs with custom AI solutions built for your business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="brand-gradient gradient-animate text-white border-0 glow-blue px-8 relative overflow-hidden group" onClick={() => setContactFormOpen(true)}>
+                <Button size="lg" className="brand-gradient gradient-animate text-white border-0 glow-blue px-8 relative overflow-hidden group hvr-float-shadow" onClick={() => setContactFormOpen(true)}>
                   <span className="relative z-10 flex items-center">Book Consultation <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" /></span>
                 </Button>
-                <Button size="lg" variant="outline" className="border-[rgba(41,98,255,0.35)] backdrop-blur-md bg-white/50 text-[#3a4a7a] hover:border-[#2962FF] hover:text-[#2962FF] hover:bg-white/80" onClick={() => scrollToSection("#services")}>
+                <Button size="lg" variant="outline" className="border-[rgba(41,98,255,0.35)] backdrop-blur-md bg-white/50 text-[#3a4a7a] hover:border-[#2962FF] hover:text-[#2962FF] hover:bg-white/80 hvr-underline-from-center" onClick={() => scrollToSection("#services")}>
                   Explore Services
                 </Button>
               </div>
@@ -187,10 +199,10 @@ export default function Home() {
             {services.map((service, idx) => (
               <motion.div 
                 key={idx} 
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 className="animated-gradient-border-light p-8 soft-shadow group hover:-translate-y-2 transition-all duration-300"
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5 group-hover:scale-110 transition-transform`}>

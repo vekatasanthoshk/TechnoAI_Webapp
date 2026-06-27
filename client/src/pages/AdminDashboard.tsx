@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import DashboardLayout from "@/components/DashboardLayout";
 import { trpc } from "@/lib/trpc";
-import { Trash2, Mail, Building2, MessageSquare, Calendar, Lock } from "lucide-react";
+import { Trash2, Mail, Building2, MessageSquare, Calendar, Lock, Users, Activity, TrendingUp } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
@@ -91,16 +91,66 @@ export default function AdminDashboard() {
     );
   }
 
+  const totalSubmissions = submissions?.length || 0;
+  const submissionsToday = submissions?.filter(s => {
+    const today = new Date();
+    const date = new Date(s.createdAt);
+    return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+  }).length || 0;
+  const submissionsThisWeek = submissions?.filter(s => {
+    const date = new Date(s.createdAt);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - date.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    return diffDays <= 7;
+  }).length || 0;
+
   return (
     <DashboardLayout>
       <div className="flex-1 space-y-8 p-8">
         <div className="flex justify-between items-end">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Contact Submissions</h1>
+            <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
             <p className="text-muted-foreground">
               Manage and review all contact form submissions from your website.
             </p>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <Card className="p-6 bg-card border-border">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-primary/10 text-primary rounded-lg">
+                <Users className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground font-medium">Total Submissions</p>
+                <h3 className="text-2xl font-bold">{totalSubmissions}</h3>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-6 bg-card border-border">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-blue-500/10 text-blue-500 rounded-lg">
+                <Activity className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground font-medium">Today</p>
+                <h3 className="text-2xl font-bold">{submissionsToday}</h3>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-6 bg-card border-border">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-green-500/10 text-green-500 rounded-lg">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground font-medium">Past 7 Days</p>
+                <h3 className="text-2xl font-bold">{submissionsThisWeek}</h3>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {isLoading ? (
