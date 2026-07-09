@@ -274,4 +274,58 @@
   .animated-gradient-border-light:hover::before {
     opacity: 1;
   }
+
+  /* ===== Immersive dark Home (scoped by class, :root tokens untouched) ===== */
+  .glass-panel-dark {
+    background: rgba(13, 27, 62, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 24px rgba(41, 98, 255, 0.45), 0 0 60px rgba(0, 200, 179, 0.25);
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+  }
+
+  .stage-vignette {
+    background: radial-gradient(120% 90% at 50% 40%, transparent 40%, rgba(3, 7, 18, 0.9) 100%);
+  }
+
+  .dark-input {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    color: #f0f4ff;
+    font-size: 0.875rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .dark-input::placeholder {
+    color: #5a6a9a;
+  }
+  .dark-input:focus {
+    outline: none;
+    border-color: #2962FF;
+    box-shadow: 0 0 0 1px #2962FF;
+  }
+  .dark-input-error {
+    border-color: rgba(255, 100, 100, 0.5);
+  }
+  .dark-input-error:focus {
+    border-color: #ff6464;
+    box-shadow: 0 0 0 1px #ff6464;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glow-text {
+      text-shadow: none;
+    }
+  }
 }
