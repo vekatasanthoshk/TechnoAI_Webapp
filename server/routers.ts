@@ -1,5 +1,5 @@
 import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
-import { getSessionCookieOptions } from "./_core/cookies";
+import { getSessionCookieOptions, setSessionCookie } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, adminProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
@@ -27,13 +27,17 @@ export const appRouter = router({
           .sign(secret);
           
         const cookieOptions = getSessionCookieOptions(ctx.req);
-        ctx.res.cookie(COOKIE_NAME, token, { ...cookieOptions, maxAge: ONE_YEAR_MS });
-        
+        // maxAge is in seconds for raw Set-Cookie headers
+        setSessionCookie(ctx.res, COOKIE_NAME, token, {
+          ...cookieOptions,
+          maxAge: ONE_YEAR_MS / 1000,
+        });
+
         return { success: true };
       }),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
-      ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      setSessionCookie(ctx.res, COOKIE_NAME, "", { ...cookieOptions, expires: new Date(0) });
       return {
         success: true,
       } as const;

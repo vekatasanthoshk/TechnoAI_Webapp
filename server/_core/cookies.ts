@@ -1,4 +1,6 @@
 import type { CookieOptions, Request } from "express";
+import type { ServerResponse } from "http";
+import { serialize, type SerializeOptions } from "cookie";
 
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
 
@@ -46,4 +48,26 @@ export function getSessionCookieOptions(
     sameSite: isSecure ? "none" : "lax",
     secure: isSecure,
   };
+}
+
+/**
+ * Append a Set-Cookie header on a plain Node response. Express's
+ * `res.cookie()` does not exist on Vercel serverless responses, so this
+ * works on both. Note: `maxAge` here is in SECONDS (cookie spec), unlike
+ * Express's milliseconds.
+ */
+export function setSessionCookie(
+  res: ServerResponse,
+  name: string,
+  value: string,
+  options: SerializeOptions
+): void {
+  const serialized = serialize(name, value, options);
+  const prev = res.getHeader("Set-Cookie");
+  const cookies = prev
+    ? Array.isArray(prev)
+      ? [...prev.map(String), serialized]
+      : [String(prev), serialized]
+    : [serialized];
+  res.setHeader("Set-Cookie", cookies);
 }

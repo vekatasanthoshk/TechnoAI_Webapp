@@ -11,7 +11,9 @@ export async function getDb() {
   const connectionString = process.env.STORAGE_POSTGRES_URL || process.env.POSTGRES_URL;
   if (!_db && connectionString) {
     try {
-      const sql = postgres(connectionString);
+      // Serverless: one connection per function instance, no prepared
+      // statements (required for pooled providers like Neon/pgbouncer)
+      const sql = postgres(connectionString, { max: 1, prepare: false });
       _db = drizzle(sql);
       
       // Auto-migrate tables on first connection to ensure they exist on Vercel Postgres

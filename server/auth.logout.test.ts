@@ -3,15 +3,10 @@ import { appRouter } from "./routers";
 import { COOKIE_NAME } from "../shared/const";
 import type { TrpcContext } from "./_core/context";
 
-type CookieCall = {
-  name: string;
-  options: Record<string, unknown>;
-};
-
 type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
 
-function createAuthContext(): { ctx: TrpcContext; clearedCookies: CookieCall[] } {
-  const clearedCookies: CookieCall[] = [];
+function createAuthContext(): { ctx: TrpcContext; headers: Map<string, unknown> } {
+  const headers = new Map<string, unknown>();
 
   const user: AuthenticatedUser = {
     id: 1,
@@ -32,31 +27,33 @@ function createAuthContext(): { ctx: TrpcContext; clearedCookies: CookieCall[] }
       headers: {},
     } as TrpcContext["req"],
     res: {
-      clearCookie: (name: string, options: Record<string, unknown>) => {
-        clearedCookies.push({ name, options });
+      getHeader: (name: string) => headers.get(name.toLowerCase()),
+      setHeader: (name: string, value: unknown) => {
+        headers.set(name.toLowerCase(), value);
       },
-    } as TrpcContext["res"],
+    } as unknown as TrpcContext["res"],
   };
 
-  return { ctx, clearedCookies };
+  return { ctx, headers };
 }
 
 describe("auth.logout", () => {
   it("clears the session cookie and reports success", async () => {
-    const { ctx, clearedCookies } = createAuthContext();
+    const { ctx, headers } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
 
     const result = await caller.auth.logout();
 
     expect(result).toEqual({ success: true });
-    expect(clearedCookies).toHaveLength(1);
-    expect(clearedCookies[0]?.name).toBe(COOKIE_NAME);
-    expect(clearedCookies[0]?.options).toMatchObject({
-      maxAge: -1,
-      secure: true,
-      sameSite: "none",
-      httpOnly: true,
-      path: "/",
-    });
+    const setCookie = headers.get("set-cookie") as string[];
+    expect(setCookie).toHaveLength(1);
+    const cookie = setCookie[0]!;
+    expect(cookie.startsWith(`${COOKIE_NAME}=`)).toBe(true);
+    // Cleared via epoch expiry, secure attributes preserved
+    expect(cookie).toContain("Expires=Thu, 01 Jan 1970 00:00:00 GMT");
+    expect(cookie).toContain("HttpOnly");
+    expect(cookie).toContain("Secure");
+    expect(cookie).toContain("SameSite=None");
+    expect(cookie).toContain("Path=/");
   });
 });
