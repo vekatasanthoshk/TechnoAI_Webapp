@@ -4,14 +4,14 @@ interface Props {
 }
 
 /**
- * TechnoAI brand logo — the original emblem artwork (silver shield with
- * 7/A monogram and swoosh), cropped from the brand render with its flat
- * navy background keyed out so it sits on any surface.
+ * TechnoAI brand logo — the original emblem artwork cropped from the
+ * brand render (background keyed out), tinted with the brand blue→teal
+ * gradient while keeping the metallic shading.
  */
 export default function TechnoAILogo({ className = "", size = 40 }: Props) {
   return (
     <img
-      src="/brand/logo-emblem-alpha.png"
+      src="/brand/logo-emblem-brand.png"
       alt="TechnoAI logo"
       width={size}
       height={size}
