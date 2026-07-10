@@ -1,4 +1,3 @@
-import TechnoAILogo from "@/components/TechnoAILogo";
 import { useSceneContext } from "@/components/scroll/SceneContext";
 
 /** Opaque background so the fixed video stage doesn't bleed through. */
@@ -10,12 +9,9 @@ export default function Footer() {
       <div className="container">
         <div className="grid md:grid-cols-4 gap-8 mb-10">
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <TechnoAILogo size={40} />
-              <div>
-                <p className="font-bold text-white">TechnoAI</p>
-                <p className="text-[10px] text-[#8a9abf]">KVS TechnoAI LLC</p>
-              </div>
+            <div className="mb-4">
+              <p className="font-bold text-white text-lg">TechnoAI</p>
+              <p className="text-[10px] text-[#8a9abf]">KVS TechnoAI LLC</p>
             </div>
             <p className="text-sm text-[#8a9abf]">Business Automation & AI Solutions</p>
           </div>
