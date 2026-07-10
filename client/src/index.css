@@ -294,7 +294,12 @@
   }
 
   .stage-vignette {
-    background: radial-gradient(120% 90% at 50% 40%, transparent 40%, rgba(3, 7, 18, 0.9) 100%);
+    background: radial-gradient(120% 90% at 50% 40%, transparent 30%, rgba(3, 7, 18, 0.95) 100%);
+  }
+
+  /* Soft dark pool behind centered copy so it always wins over the orb */
+  .stage-scrim {
+    background: radial-gradient(55% 45% at 50% 48%, rgba(3, 7, 18, 0.45) 0%, transparent 70%);
   }
 
   .dark-input {

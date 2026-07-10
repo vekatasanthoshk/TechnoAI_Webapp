@@ -44,6 +44,12 @@ function buildGroups(): ClipGroup[] {
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
+/**
+ * Videos never reach full opacity — the orb is a backdrop, not the
+ * subject. Keeps foreground copy readable over bright plasma frames.
+ */
+const STAGE_DIM = 0.55;
+
 /** Opacity of a group: max over its scene indices of the triangular fade. */
 function groupOpacity(v: number, first: number, last: number): number {
   if (v >= first && v <= last) return 1;
@@ -62,14 +68,14 @@ function VideoLayer({
   const videoRef = useRef<HTMLVideoElement>(null);
   // Eagerly-subscribed local value (lazy useTransform chains off context
   // values silently drop updates with this mount timing).
-  const initialOpacity = groupOpacity(sceneFloat.get(), group.first, group.last);
-  const opacity = useMotionValue(initialOpacity);
+  const initialFade = groupOpacity(sceneFloat.get(), group.first, group.last);
+  const opacity = useMotionValue(STAGE_DIM * initialFade);
   // Cinematic push-in: an incoming layer settles from 1.08 → 1.0 as it fades up
-  const scale = useMotionValue(1 + 0.08 * (1 - initialOpacity));
+  const scale = useMotionValue(1 + 0.08 * (1 - initialFade));
   useMotionValueEvent(sceneFloat, "change", (v) => {
-    const o = groupOpacity(v, group.first, group.last);
-    opacity.set(o);
-    scale.set(1 + 0.08 * (1 - o));
+    const fade = groupOpacity(v, group.first, group.last);
+    opacity.set(STAGE_DIM * fade);
+    scale.set(1 + 0.08 * (1 - fade));
   });
 
   // Play only while visible; retry once on first pointer interaction if
@@ -133,13 +139,13 @@ function PosterLayer({
   sceneFloat: MotionValue<number>;
   mounted: boolean;
 }) {
-  const initialOpacity = groupOpacity(sceneFloat.get(), group.first, group.last);
-  const opacity = useMotionValue(initialOpacity);
-  const scale = useMotionValue(1 + 0.08 * (1 - initialOpacity));
+  const initialFade = groupOpacity(sceneFloat.get(), group.first, group.last);
+  const opacity = useMotionValue(STAGE_DIM * initialFade);
+  const scale = useMotionValue(1 + 0.08 * (1 - initialFade));
   useMotionValueEvent(sceneFloat, "change", (v) => {
-    const o = groupOpacity(v, group.first, group.last);
-    opacity.set(o);
-    scale.set(1 + 0.08 * (1 - o));
+    const fade = groupOpacity(v, group.first, group.last);
+    opacity.set(STAGE_DIM * fade);
+    scale.set(1 + 0.08 * (1 - fade));
   });
   if (!mounted) return null;
   return (
@@ -192,11 +198,12 @@ export default function VideoStage() {
           alt=""
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
-          style={{ mixBlendMode: "screen" }}
+          style={{ mixBlendMode: "screen", opacity: STAGE_DIM }}
         />
       )}
 
-      {/* Vignette keeps edges dark so copy stays readable */}
+      {/* Center scrim + vignette keep copy readable over the orb */}
+      <div className="absolute inset-0 stage-scrim" />
       <div className="absolute inset-0 stage-vignette" />
     </div>
   );
