@@ -53,7 +53,7 @@ function HeroBody({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mx-auto mt-8 max-w-2xl text-lg md:text-xl text-[#aab8e0] leading-relaxed"
+          className="mx-auto mt-8 max-w-2xl text-lg md:text-xl text-[#dce4ff] leading-relaxed [text-shadow:0_1px_3px_rgba(3,7,18,0.9),0_0_24px_rgba(3,7,18,0.8)]"
         >
           Automate workflows, improve decision-making, and reduce operational costs
           with custom AI solutions built for your business.

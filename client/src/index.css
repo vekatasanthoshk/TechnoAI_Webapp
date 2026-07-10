@@ -67,7 +67,7 @@
   --chart-1: #2962FF;
   --chart-2: #00C8B3;
   --chart-3: #00CB53;
-  --chart-4: #0080FF;
+  --chart-4: #00B0FF;
   --chart-5: #1A237B;
   --sidebar: #f8faff;
   --sidebar-foreground: #0d1b3e;
@@ -102,7 +102,7 @@
   --chart-1: #2962FF;
   --chart-2: #00C8B3;
   --chart-3: #00CB53;
-  --chart-4: #0080FF;
+  --chart-4: #00B0FF;
   --chart-5: #1A237B;
   --sidebar: #0a1530;
   --sidebar-foreground: #f0f4ff;
@@ -169,12 +169,12 @@
 
   /* Brand gradient — blue to teal */
   .brand-gradient {
-    background: linear-gradient(135deg, #2962FF 0%, #0080FF 50%, #00C8B3 100%);
+    background: linear-gradient(135deg, #2962FF 0%, #00B0FF 50%, #00C8B3 100%);
   }
 
   /* Brand gradient text */
   .brand-gradient-text {
-    background: linear-gradient(135deg, #2962FF 0%, #0080FF 40%, #00C8B3 80%, #00CB53 100%);
+    background: linear-gradient(135deg, #2962FF 0%, #00B0FF 40%, #00C8B3 80%, #00CB53 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
