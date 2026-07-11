@@ -35,36 +35,36 @@ export default function NavBar({ onBookConsultation }: { onBookConsultation: () 
           : "border-transparent bg-transparent"
       }`}
     >
-      <div className="container flex items-center justify-between h-16">
-        <div className="flex items-center gap-3">
+      <div className="container flex items-center justify-between gap-4 h-16">
+        <div className="flex items-center gap-3 shrink-0">
           <TechnoAILogo size={40} />
-          <div className="hidden sm:block">
-            <span className="font-bold text-lg text-white">TechnoAI</span>
+          <div className="hidden sm:block whitespace-nowrap">
+            <span className="font-bold text-lg text-white leading-tight">TechnoAI</span>
             <p className="text-[10px] text-[#8a9abf] leading-none">KVS TechnoAI LLC</p>
           </div>
         </div>
-        <div className="hidden md:flex items-center gap-7 text-sm text-[#aab8e0]">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm text-[#aab8e0]">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
               onClick={() => go(item.href)}
-              className="hover:text-[#00C8B3] transition-colors"
+              className="whitespace-nowrap hover:text-[#00C8B3] transition-colors"
             >
               {item.label}
             </button>
           ))}
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden lg:flex shrink-0">
           <Button
             size="sm"
-            className="brand-gradient text-white hover:opacity-90 border-0"
+            className="brand-gradient text-white hover:opacity-90 border-0 whitespace-nowrap"
             onClick={onBookConsultation}
           >
             Book Consultation
           </Button>
         </div>
         <button
-          className="md:hidden p-2 text-[#aab8e0]"
+          className="lg:hidden p-2 text-[#aab8e0]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -72,7 +72,7 @@ export default function NavBar({ onBookConsultation }: { onBookConsultation: () 
         </button>
       </div>
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel-dark border-b border-white/10">
+        <div className="lg:hidden glass-panel-dark border-b border-white/10">
           <div className="container py-4 flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <button
