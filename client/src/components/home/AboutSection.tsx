@@ -1,6 +1,7 @@
 import { Shield, TrendingUp, Users } from "lucide-react";
 import SceneSection from "@/components/scroll/SceneSection";
 import KineticHeading from "@/components/scroll/KineticHeading";
+import TechnoAILogo from "@/components/TechnoAILogo";
 
 const FEATURES = [
   {
@@ -60,7 +61,8 @@ export default function AboutSection() {
             </div>
           </div>
           <div className="glass-panel-dark rounded-2xl p-10 flex flex-col items-center justify-center min-h-80 text-center">
-            <p className="brand-gradient-text text-4xl font-bold mb-3">TechnoAI</p>
+            <TechnoAILogo size={112} className="mx-auto mb-5 drop-shadow-[0_0_28px_rgba(41,98,255,0.45)]" />
+            <p className="brand-gradient-text text-3xl font-bold mb-2">TechnoAI</p>
             <p className="font-bold text-lg text-white">KVS TechnoAI LLC</p>
             <p className="text-[#8a9abf] text-sm mt-1">Business Automation & AI Solutions</p>
             <div className="flex flex-wrap justify-center gap-3 mt-6">

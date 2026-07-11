@@ -16,7 +16,9 @@ export default function ContactModal({ open, onClose }: { open: boolean; onClose
         </button>
         <div className="mb-6">
           <h3 className="text-2xl font-bold text-white">Book a Consultation</h3>
-          <p className="text-[#8a9abf] text-sm mt-1">We'll get back to you within 24 hours.</p>
+          <p className="text-[#8a9abf] text-sm mt-1">
+            Pick a date and time slot — we'll confirm your appointment within 24 hours.
+          </p>
         </div>
         <ContactForm variant="modal" onSuccess={onClose} />
       </div>

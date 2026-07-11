@@ -54,15 +54,7 @@ export default function NavBar({ onBookConsultation }: { onBookConsultation: () 
             </button>
           ))}
         </div>
-        <div className="hidden md:flex gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-white/20 text-[#aab8e0] hover:border-[#00C8B3] hover:text-[#00C8B3] bg-transparent hover:bg-transparent"
-            onClick={() => go("#contact")}
-          >
-            Contact
-          </Button>
+        <div className="hidden md:flex">
           <Button
             size="sm"
             className="brand-gradient text-white hover:opacity-90 border-0"
