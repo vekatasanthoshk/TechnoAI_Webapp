@@ -33,7 +33,9 @@ export default function AboutSection() {
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">Who We Are</p>
+            <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">
+              <span className="text-white/35 tabular-nums mr-3">05</span>Who We Are
+            </p>
             <KineticHeading
               text="About TechnoAI"
               className="text-4xl md:text-5xl font-bold mb-6 text-white"

@@ -118,6 +118,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* Remove the 300ms double-tap delay on touch devices */
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
@@ -300,6 +306,16 @@
   /* Soft dark pool behind centered copy so it always wins over the orb */
   .stage-scrim {
     background: radial-gradient(55% 45% at 50% 48%, rgba(3, 7, 18, 0.45) 0%, transparent 70%);
+  }
+
+  /* Keyboard focus ring for custom interactive elements on the dark theme */
+  .focus-ring {
+    outline: none;
+  }
+  .focus-ring:focus-visible {
+    outline: 2px solid #00c8b3;
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   .dark-input {

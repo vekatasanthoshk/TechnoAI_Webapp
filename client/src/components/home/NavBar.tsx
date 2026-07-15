@@ -48,7 +48,7 @@ export default function NavBar({ onBookConsultation }: { onBookConsultation: () 
             <button
               key={item.label}
               onClick={() => go(item.href)}
-              className="whitespace-nowrap hover:text-[#00C8B3] transition-colors"
+              className="focus-ring whitespace-nowrap hover:text-[#00C8B3] transition-colors"
             >
               {item.label}
             </button>
@@ -64,9 +64,10 @@ export default function NavBar({ onBookConsultation }: { onBookConsultation: () 
           </Button>
         </div>
         <button
-          className="lg:hidden p-2 text-[#aab8e0]"
+          className="focus-ring lg:hidden p-2 text-[#aab8e0]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -78,7 +79,7 @@ export default function NavBar({ onBookConsultation }: { onBookConsultation: () 
               <button
                 key={item.label}
                 onClick={() => go(item.href)}
-                className="text-left text-sm text-[#aab8e0] hover:text-[#00C8B3] transition-colors"
+                className="focus-ring text-left text-sm text-[#aab8e0] hover:text-[#00C8B3] transition-colors"
               >
                 {item.label}
               </button>

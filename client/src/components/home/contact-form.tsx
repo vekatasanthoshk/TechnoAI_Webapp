@@ -38,19 +38,27 @@ const TIME_SLOTS = [
 ];
 
 export function Field({
+  id,
   label,
   error,
   children,
 }: {
+  id: string;
   label: string;
   error?: string;
   children: React.ReactNode;
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-[#aab8e0] mb-1.5">{label} *</label>
+      <label htmlFor={id} className="block text-sm font-medium text-[#aab8e0] mb-1.5">
+        {label} *
+      </label>
       {children}
-      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+      {error && (
+        <p id={`${id}-error`} aria-live="polite" className="mt-1 text-xs text-red-400">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -65,6 +73,7 @@ export default function ContactForm({
   onSuccess?: () => void;
 }) {
   const isAppointment = variant === "modal";
+  const fid = (name: string) => `${variant}-${name}`;
   const contactMutation = trpc.contact.submit.useMutation();
   const form = useForm<ContactFormData>({
     resolver: zodResolver(isAppointment ? appointmentSchema : contactSchema),
@@ -99,11 +108,29 @@ export default function ContactForm({
 
   const nameEmail = (
     <>
-      <Field label="Name" error={errors.name?.message}>
-        <input {...form.register("name")} type="text" placeholder="Your name" className={cls(!!errors.name)} />
+      <Field id={fid("name")} label="Name" error={errors.name?.message}>
+        <input
+          {...form.register("name")}
+          id={fid("name")}
+          type="text"
+          autoComplete="name"
+          placeholder="Your name"
+          aria-invalid={!!errors.name}
+          className={cls(!!errors.name)}
+        />
       </Field>
-      <Field label="Email" error={errors.email?.message}>
-        <input {...form.register("email")} type="email" placeholder="you@company.com" className={cls(!!errors.email)} />
+      <Field id={fid("email")} label="Email" error={errors.email?.message}>
+        <input
+          {...form.register("email")}
+          id={fid("email")}
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          spellCheck={false}
+          placeholder="you@company.com"
+          aria-invalid={!!errors.email}
+          className={cls(!!errors.email)}
+        />
       </Field>
     </>
   );
@@ -115,21 +142,36 @@ export default function ContactForm({
       noValidate
     >
       {variant === "section" ? <div className="grid sm:grid-cols-2 gap-5">{nameEmail}</div> : nameEmail}
-      <Field label="Company" error={errors.company?.message}>
-        <input {...form.register("company")} type="text" placeholder="Your company name" className={cls(!!errors.company)} />
+      <Field id={fid("company")} label="Company" error={errors.company?.message}>
+        <input
+          {...form.register("company")}
+          id={fid("company")}
+          type="text"
+          autoComplete="organization"
+          placeholder="Your company name"
+          aria-invalid={!!errors.company}
+          className={cls(!!errors.company)}
+        />
       </Field>
       {isAppointment && (
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Preferred date" error={errors.date?.message}>
+          <Field id={fid("date")} label="Preferred date" error={errors.date?.message}>
             <input
               {...form.register("date")}
+              id={fid("date")}
               type="date"
               min={todayISO()}
+              aria-invalid={!!errors.date}
               className={`${cls(!!errors.date)} [color-scheme:dark]`}
             />
           </Field>
-          <Field label="Time slot" error={errors.time?.message}>
-            <select {...form.register("time")} className={`${cls(!!errors.time)} [color-scheme:dark]`}>
+          <Field id={fid("time")} label="Time slot" error={errors.time?.message}>
+            <select
+              {...form.register("time")}
+              id={fid("time")}
+              aria-invalid={!!errors.time}
+              className={`${cls(!!errors.time)} [color-scheme:dark] bg-[#0a1330] text-[#f0f4ff]`}
+            >
               <option value="">Select a slot</option>
               {TIME_SLOTS.map((slot) => (
                 <option key={slot} value={slot}>
@@ -140,15 +182,17 @@ export default function ContactForm({
           </Field>
         </div>
       )}
-      <Field label="Message" error={errors.message?.message}>
+      <Field id={fid("message")} label="Message" error={errors.message?.message}>
         <textarea
           {...form.register("message")}
+          id={fid("message")}
           rows={variant === "section" ? 5 : 3}
           placeholder={
             isAppointment
               ? "What would you like to discuss in the consultation?"
-              : "Tell us about your project and goals..."
+              : "Tell us about your project and goals…"
           }
+          aria-invalid={!!errors.message}
           className={`${cls(!!errors.message)} resize-none`}
         />
       </Field>
@@ -158,7 +202,7 @@ export default function ContactForm({
         className="w-full brand-gradient text-white border-0 hover:opacity-90 glow-blue"
         disabled={busy}
       >
-        {busy ? "Sending..." : isAppointment ? "Book Appointment" : "Send Message"}
+        {busy ? "Sending…" : isAppointment ? "Book Appointment" : "Send Message"}
       </Button>
     </form>
   );

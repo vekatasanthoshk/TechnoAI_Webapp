@@ -34,7 +34,7 @@ export default function MetricsSection() {
       <div className="container">
         <div className="max-w-3xl">
           <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">
-            Results That Matter
+            <span className="text-white/35 tabular-nums mr-3">03</span>Results That Matter
           </p>
           <KineticHeading
             text="Digital Marketing: Optimized Campaigns & ROI"
@@ -47,7 +47,7 @@ export default function MetricsSection() {
         <div className="grid sm:grid-cols-3 gap-10">
           {METRICS.map((metric) => (
             <div key={metric.label} className="border-t border-white/15 pt-6">
-              <div className="text-7xl md:text-8xl lg:text-9xl font-bold brand-gradient-text mb-3 leading-none tracking-tight">
+              <div className="text-7xl md:text-8xl lg:text-9xl font-bold brand-gradient-text mb-3 leading-none tracking-tight tabular-nums">
                 <CountUp target={metric.target} format={metric.format} />
               </div>
               <p className="text-xs text-[#8a9abf] tracking-[0.25em] uppercase">{metric.label}</p>

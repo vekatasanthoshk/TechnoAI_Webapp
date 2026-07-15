@@ -45,7 +45,7 @@ export default function SceneSection({
 
   if (pin) {
     return (
-      <section ref={setRef} id={anchorId} className={`relative z-10 h-[220vh] ${className}`}>
+      <section ref={setRef} id={anchorId} className={`relative z-10 h-[220vh] scroll-mt-16 ${className}`}>
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           {body}
         </div>
@@ -57,7 +57,7 @@ export default function SceneSection({
     <section
       ref={setRef}
       id={anchorId}
-      className={`relative z-10 flex min-h-screen items-center py-24 ${className}`}
+      className={`relative z-10 flex min-h-screen items-center py-24 scroll-mt-16 ${className}`}
     >
       <motion.div className="w-full" style={{ y, opacity }}>
         {body}

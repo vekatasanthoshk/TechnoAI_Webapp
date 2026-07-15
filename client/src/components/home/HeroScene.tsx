@@ -93,7 +93,7 @@ function HeroBody({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 + i * 0.12 }}
             >
-              <div className={`text-3xl font-bold ${m.color} glow-text`}>{m.value}</div>
+              <div className={`text-3xl font-bold tabular-nums ${m.color} glow-text`}>{m.value}</div>
               <div className="text-xs text-[#8a9abf] font-medium tracking-wide">{m.label}</div>
             </motion.div>
           ))}

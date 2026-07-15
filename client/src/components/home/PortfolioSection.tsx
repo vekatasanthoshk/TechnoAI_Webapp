@@ -28,7 +28,9 @@ export default function PortfolioSection() {
     <SceneSection sceneId="portfolio" anchorId="portfolio">
       <div className="container">
         <div className="text-center mb-14">
-          <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">Case Studies</p>
+          <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">
+            <span className="text-white/35 tabular-nums mr-3">04</span>Case Studies
+          </p>
           <KineticHeading
             text="Success Stories"
             className="text-4xl md:text-5xl font-bold mb-4 text-white"
@@ -42,7 +44,7 @@ export default function PortfolioSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-panel-dark rounded-2xl p-8 group hover:-translate-y-1 transition-all duration-300"
+            className="glass-panel-dark rounded-2xl p-8 group hover:-translate-y-1 transition-transform duration-300"
           >
             <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(0,200,179,0.1)] border border-[rgba(0,200,179,0.3)] text-[#00C8B3] text-xs font-medium mb-6">
               SaaS Company
@@ -61,7 +63,7 @@ export default function PortfolioSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-panel-dark rounded-2xl p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
+            className="glass-panel-dark rounded-2xl p-8 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#2962FF]/10 rounded-bl-full pointer-events-none" />
             <div className="inline-flex px-3 py-1 rounded-full bg-[rgba(41,98,255,0.12)] border border-[rgba(41,98,255,0.35)] text-[#4d8dff] text-xs font-medium mb-6">

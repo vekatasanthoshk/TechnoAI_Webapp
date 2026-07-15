@@ -71,7 +71,10 @@ export default function Home() {
   return (
     <MotionConfig reducedMotion="user">
       <SceneContext.Provider value={contextValue}>
-        <div className="relative min-h-screen overflow-x-clip bg-[#050a1f] text-[#f0f4ff]">
+        <div
+          className="relative min-h-screen overflow-x-clip bg-[#050a1f] text-[#f0f4ff]"
+          style={{ colorScheme: "dark" }}
+        >
           <VideoStage />
           <div className="fixed inset-0 z-[1] pointer-events-none noise-overlay" aria-hidden />
 

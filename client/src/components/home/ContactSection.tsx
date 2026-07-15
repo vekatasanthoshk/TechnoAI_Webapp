@@ -7,7 +7,9 @@ export default function ContactSection() {
     <SceneSection sceneId="contact" anchorId="contact">
       <div className="container">
         <div className="text-center mb-12">
-          <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">Get In Touch</p>
+          <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">
+            <span className="text-white/35 tabular-nums mr-3">07</span>Get In Touch
+          </p>
           <KineticHeading
             text="Ready to Transform Your Business?"
             className="text-4xl md:text-5xl font-bold mb-4 text-white"

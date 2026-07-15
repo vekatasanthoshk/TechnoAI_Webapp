@@ -26,7 +26,7 @@ export default function Footer() {
                 <li key={s}>
                   <button
                     onClick={() => scrollToAnchor("#services")}
-                    className="hover:text-[#00C8B3] transition-colors"
+                    className="focus-ring hover:text-[#00C8B3] transition-colors"
                   >
                     {s}
                   </button>
@@ -45,7 +45,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <button
                     onClick={() => scrollToAnchor(item.href)}
-                    className="hover:text-[#00C8B3] transition-colors"
+                    className="focus-ring hover:text-[#00C8B3] transition-colors"
                   >
                     {item.label}
                   </button>
@@ -56,8 +56,8 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-sm text-white mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-[#8a9abf]">
-              <li><a href="#" className="hover:text-[#00C8B3] transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-[#00C8B3] transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="focus-ring hover:text-[#00C8B3] transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="focus-ring hover:text-[#00C8B3] transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>

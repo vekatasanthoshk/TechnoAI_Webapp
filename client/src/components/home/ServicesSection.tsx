@@ -32,7 +32,9 @@ export default function ServicesSection({ onLearnMore }: { onLearnMore: () => vo
     <SceneSection sceneId="services" anchorId="services">
       <div className="container">
         <div className="max-w-2xl mb-14">
-          <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">What We Do</p>
+          <p className="text-[#00C8B3] text-sm font-semibold uppercase tracking-widest mb-3">
+            <span className="text-white/35 tabular-nums mr-3">02</span>What We Do
+          </p>
           <KineticHeading
             text="Our Core Services"
             className="text-4xl md:text-5xl font-bold mb-4 text-white"
@@ -49,7 +51,7 @@ export default function ServicesSection({ onLearnMore }: { onLearnMore: () => vo
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="glass-panel-dark rounded-2xl p-8 group hover:-translate-y-2 hover:border-[rgba(0,200,179,0.3)] transition-all duration-300"
+              className="glass-panel-dark rounded-2xl p-8 group hover:-translate-y-2 hover:border-[rgba(0,200,179,0.3)] transition-[transform,border-color] duration-300"
             >
               <div
                 className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5 group-hover:scale-110 transition-transform`}
@@ -60,7 +62,7 @@ export default function ServicesSection({ onLearnMore }: { onLearnMore: () => vo
               <p className="text-[#8a9abf] mb-6 text-sm leading-relaxed">{service.description}</p>
               <button
                 onClick={onLearnMore}
-                className="flex items-center gap-1 text-sm text-[#4d8dff] hover:text-[#00C8B3] transition-colors font-medium"
+                className="focus-ring flex items-center gap-1 text-sm text-[#4d8dff] hover:text-[#00C8B3] transition-colors font-medium"
               >
                 Learn More
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

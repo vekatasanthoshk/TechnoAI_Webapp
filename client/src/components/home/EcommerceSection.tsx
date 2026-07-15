@@ -22,7 +22,9 @@ export default function EcommerceSection() {
     <SceneSection sceneId="ecommerce" anchorId="ecommerce">
       <div className="container">
         <div className="md:ml-auto md:text-right max-w-2xl mb-14">
-          <p className="text-[#3ddc78] text-sm font-semibold uppercase tracking-widest mb-3">eCommerce AI</p>
+          <p className="text-[#3ddc78] text-sm font-semibold uppercase tracking-widest mb-3">
+            <span className="text-white/35 tabular-nums mr-3">06</span>eCommerce AI
+          </p>
           <KineticHeading
             text="AI eCommerce Solutions"
             className="text-4xl md:text-5xl font-bold mb-4 text-white"

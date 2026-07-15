@@ -29,7 +29,7 @@ export default function ScrollProgress() {
             aria-label={LABELS[scene.id]}
             aria-current={active ? "true" : undefined}
             onClick={() => scrollToAnchor(scene.anchor)}
-            className={`rounded-full transition-all duration-300 ${
+            className={`focus-ring rounded-full transition-[height,background-color,box-shadow] duration-300 ${
               active
                 ? "h-7 w-1.5 bg-[#00C8B3] shadow-[0_0_12px_rgba(0,200,179,0.8)]"
                 : "h-1.5 w-1.5 bg-white/25 hover:bg-white/60"
